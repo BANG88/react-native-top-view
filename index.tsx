@@ -21,7 +21,7 @@ export interface TopViewState {
 const addType = "RN_PREFIX_ADDTOPVIEW";
 const removeType = "RN_PREFIX_REMOVETOPVIEW";
 // fix react native web does not support DeviceEventEmitter
-const TopViewEventEmitter = DeviceEventEmitter || NativeEventEmitter;
+const TopViewEventEmitter = DeviceEventEmitter || new NativeEventEmitter();
 // Component Placeholder
 export class TopView extends React.Component<TopViewProps, TopViewState> {
   state: TopViewState = {
