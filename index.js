@@ -28,15 +28,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var react_native_1 = require("react-native");
 // events
-var addType = 'RN_PREFIX_ADDTOPVIEW';
-var removeType = 'RN_PREFIX_REMOVETOPVIEW';
+var addType = "RN_PREFIX_ADDTOPVIEW";
+var removeType = "RN_PREFIX_REMOVETOPVIEW";
 // Component Placeholder
 var TopView = /** @class */ (function (_super) {
     __extends(TopView, _super);
     function TopView() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
-            element: null,
+            element: null
         };
         _this.removeTopView = function () {
             _this.setState({ element: null });
@@ -47,7 +47,7 @@ var TopView = /** @class */ (function (_super) {
             }
             else {
                 // tslint:disable-next-line:no-console
-                console.error('element must be valid react elment!');
+                console.error("element must be valid react elment!");
             }
         };
         return _this;
@@ -66,27 +66,32 @@ var TopView = /** @class */ (function (_super) {
     return TopView;
 }(react_1.default.Component));
 exports.TopView = TopView;
-var withRoot = function (Node) {
-    return /** @class */ (function (_super) {
-        __extends(class_1, _super);
-        function class_1() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        class_1.prototype.render = function () {
-            return (<react_native_1.View style={{ flex: 1 }}>
-          <Node {...this.props}/>
-          <TopView />
-        </react_native_1.View>);
-        };
-        return class_1;
-    }(react_1.default.Component));
-};
-//  * copy of original registerComponent
-var originalRegisterComponent = react_native_1.AppRegistry.registerComponent;
-react_native_1.AppRegistry.registerComponent = function (appKey, componentProvider) {
-    return originalRegisterComponent(appKey, function () {
-        return withRoot(componentProvider());
-    });
+/**
+ * setup topview
+ */
+exports.setupTopView = function () {
+    var withRoot = function (Node) {
+        return /** @class */ (function (_super) {
+            __extends(class_1, _super);
+            function class_1() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            class_1.prototype.render = function () {
+                return (<react_native_1.View style={{ flex: 1 }}>
+            <Node {...this.props}/>
+            <TopView />
+          </react_native_1.View>);
+            };
+            return class_1;
+        }(react_1.default.Component));
+    };
+    //  * copy of original registerComponent
+    var originalRegisterComponent = react_native_1.AppRegistry.registerComponent;
+    react_native_1.AppRegistry.registerComponent = function (appKey, componentProvider) {
+        return originalRegisterComponent(appKey, function () {
+            return withRoot(componentProvider());
+        });
+    };
 };
 /**
  * set top view
@@ -97,3 +102,4 @@ exports.set = function (e) { return react_native_1.NativeEventEmitter.emit(addTy
  * unset top view
  */
 exports.remove = function () { return react_native_1.NativeEventEmitter.emit(removeType); };
+exports.default = { set: exports.set, remove: exports.remove };

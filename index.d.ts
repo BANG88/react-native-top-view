@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 export interface TopViewProps {
     children?: React.ReactNode;
 }
@@ -14,6 +14,10 @@ export declare class TopView extends React.Component<TopViewProps, TopViewState>
     render(): React.ReactNode;
 }
 /**
+ * setup topview
+ */
+export declare const setupTopView: () => void;
+/**
  * set top view
  * @param e
  */
@@ -22,3 +26,8 @@ export declare const set: (e: React.ReactNode) => void;
  * unset top view
  */
 export declare const remove: () => void;
+declare const _default: {
+    set: (e: React.ReactNode) => void;
+    remove: () => void;
+};
+export default _default;
