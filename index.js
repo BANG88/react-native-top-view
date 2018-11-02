@@ -17,6 +17,17 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -77,10 +88,9 @@ exports.setupTopView = function () {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
             class_1.prototype.render = function () {
-                return (<react_native_1.View style={{ flex: 1 }}>
-            <Node {...this.props}/>
-            <TopView />
-          </react_native_1.View>);
+                return (react_1.default.createElement(react_native_1.View, { style: { flex: 1 } },
+                    react_1.default.createElement(Node, __assign({}, this.props)),
+                    react_1.default.createElement(TopView, null)));
             };
             return class_1;
         }(react_1.default.Component));
