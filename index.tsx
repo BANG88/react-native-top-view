@@ -5,7 +5,12 @@
  */
 
 import React, { isValidElement, ReactElement } from "react";
-import { NativeEventEmitter, AppRegistry, View } from "react-native";
+import {
+  NativeEventEmitter,
+  DeviceEventEmitter,
+  AppRegistry,
+  View
+} from "react-native";
 export interface TopViewProps {
   children?: React.ReactNode;
 }
@@ -15,18 +20,20 @@ export interface TopViewState {
 // events
 const addType = "RN_PREFIX_ADDTOPVIEW";
 const removeType = "RN_PREFIX_REMOVETOPVIEW";
+// fix react native web does not support DeviceEventEmitter
+const TopViewEventEmitter = NativeEventEmitter || DeviceEventEmitter;
 // Component Placeholder
 export class TopView extends React.Component<TopViewProps, TopViewState> {
   state: TopViewState = {
     element: null
   };
   componentDidMount() {
-    NativeEventEmitter.addListener(addType, this.addTopView);
-    NativeEventEmitter.addListener(removeType, this.removeTopView);
+    TopViewEventEmitter.addListener(addType, this.addTopView);
+    TopViewEventEmitter.addListener(removeType, this.removeTopView);
   }
   componentWillUnmount() {
-    NativeEventEmitter.removeListener(addType, this.addTopView);
-    NativeEventEmitter.removeListener(removeType, this.removeTopView);
+    TopViewEventEmitter.removeListener(addType, this.addTopView);
+    TopViewEventEmitter.removeListener(removeType, this.removeTopView);
   }
   removeTopView = () => {
     this.setState({ element: null });
