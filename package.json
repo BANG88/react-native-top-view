@@ -1,0 +1,33 @@
+{
+  "name": "react-native-top-view",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bang88/react-native-top-view.git"
+  },
+  "author": "bang <sqibang@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bang88/react-native-top-view/issues"
+  },
+  "homepage": "https://github.com/bang88/react-native-top-view#readme",
+  "scripts": {
+    "prepublishOnly": "tsc"
+  },
+  "keywords": [
+    "top-view",
+    "react-native"
+  ],
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "typing": "index.d.ts",
+  "description": "",
+  "devDependencies": {
+    "@types/react-native": "^0.57.7",
+    "react": "^16.6.0",
+    "typescript": "^3.1.6"
+  }
+}
