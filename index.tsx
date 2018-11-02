@@ -43,31 +43,25 @@ export class TopView extends React.Component<TopViewProps, TopViewState> {
     return this.state.element;
   }
 }
-
-/**
- * setup topview
- */
-export const setupTopView = () => {
-  const withRoot = (Node: React.ReactType) => {
-    return class extends React.Component {
-      render() {
-        return (
-          <View style={{ flex: 1 }}>
-            <Node {...this.props} />
-            <TopView />
-          </View>
-        );
-      }
-    };
+const withRoot = (Node: React.ReactType) => {
+  return class extends React.Component {
+    render() {
+      return (
+        <View style={{ flex: 1 }}>
+          <Node {...this.props} />
+          <TopView />
+        </View>
+      );
+    }
   };
-  //  * copy of original registerComponent
-  const originalRegisterComponent = AppRegistry.registerComponent;
+};
+//  * copy of original registerComponent
+const originalRegisterComponent = AppRegistry.registerComponent;
 
-  AppRegistry.registerComponent = (appKey, componentProvider) => {
-    return originalRegisterComponent(appKey, () => {
-      return withRoot(componentProvider());
-    });
-  };
+AppRegistry.registerComponent = (appKey, componentProvider) => {
+  return originalRegisterComponent(appKey, () => {
+    return withRoot(componentProvider());
+  });
 };
 /**
  * set top view
