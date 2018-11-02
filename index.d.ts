@@ -14,10 +14,6 @@ export declare class TopView extends React.Component<TopViewProps, TopViewState>
     render(): React.ReactNode;
 }
 /**
- * setup topview
- */
-export declare const setupTopView: () => void;
-/**
  * set top view
  * @param e
  */

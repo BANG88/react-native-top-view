@@ -77,31 +77,26 @@ var TopView = /** @class */ (function (_super) {
     return TopView;
 }(react_1.default.Component));
 exports.TopView = TopView;
-/**
- * setup topview
- */
-exports.setupTopView = function () {
-    var withRoot = function (Node) {
-        return /** @class */ (function (_super) {
-            __extends(class_1, _super);
-            function class_1() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            class_1.prototype.render = function () {
-                return (react_1.default.createElement(react_native_1.View, { style: { flex: 1 } },
-                    react_1.default.createElement(Node, __assign({}, this.props)),
-                    react_1.default.createElement(TopView, null)));
-            };
-            return class_1;
-        }(react_1.default.Component));
-    };
-    //  * copy of original registerComponent
-    var originalRegisterComponent = react_native_1.AppRegistry.registerComponent;
-    react_native_1.AppRegistry.registerComponent = function (appKey, componentProvider) {
-        return originalRegisterComponent(appKey, function () {
-            return withRoot(componentProvider());
-        });
-    };
+var withRoot = function (Node) {
+    return /** @class */ (function (_super) {
+        __extends(class_1, _super);
+        function class_1() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        class_1.prototype.render = function () {
+            return (react_1.default.createElement(react_native_1.View, { style: { flex: 1 } },
+                react_1.default.createElement(Node, __assign({}, this.props)),
+                react_1.default.createElement(TopView, null)));
+        };
+        return class_1;
+    }(react_1.default.Component));
+};
+//  * copy of original registerComponent
+var originalRegisterComponent = react_native_1.AppRegistry.registerComponent;
+react_native_1.AppRegistry.registerComponent = function (appKey, componentProvider) {
+    return originalRegisterComponent(appKey, function () {
+        return withRoot(componentProvider());
+    });
 };
 /**
  * set top view
