@@ -41,6 +41,8 @@ var react_native_1 = require("react-native");
 // events
 var addType = "RN_PREFIX_ADDTOPVIEW";
 var removeType = "RN_PREFIX_REMOVETOPVIEW";
+// fix react native web does not support DeviceEventEmitter
+var TopViewEventEmitter = react_native_1.NativeEventEmitter || react_native_1.DeviceEventEmitter;
 // Component Placeholder
 var TopView = /** @class */ (function (_super) {
     __extends(TopView, _super);
@@ -64,12 +66,12 @@ var TopView = /** @class */ (function (_super) {
         return _this;
     }
     TopView.prototype.componentDidMount = function () {
-        react_native_1.NativeEventEmitter.addListener(addType, this.addTopView);
-        react_native_1.NativeEventEmitter.addListener(removeType, this.removeTopView);
+        TopViewEventEmitter.addListener(addType, this.addTopView);
+        TopViewEventEmitter.addListener(removeType, this.removeTopView);
     };
     TopView.prototype.componentWillUnmount = function () {
-        react_native_1.NativeEventEmitter.removeListener(addType, this.addTopView);
-        react_native_1.NativeEventEmitter.removeListener(removeType, this.removeTopView);
+        TopViewEventEmitter.removeListener(addType, this.addTopView);
+        TopViewEventEmitter.removeListener(removeType, this.removeTopView);
     };
     TopView.prototype.render = function () {
         return this.state.element;
